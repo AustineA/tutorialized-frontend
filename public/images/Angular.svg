@@ -1,0 +1,14 @@
+<svg id="Angular" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="50" height="50" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_5" data-name="Mask Group 5" clip-path="url(#clip-path)">
+    <g id="Angular-2" data-name="Angular" transform="translate(1.878 0.22)">
+      <path id="Path_8" data-name="Path 8" d="M55.072,30h0L31.9,38.263,35.434,68.9,55.072,79.78h0L74.711,68.9l3.534-30.639Z" transform="translate(-31.9 -30)" fill="#dd0031"/>
+      <path id="Path_9" data-name="Path 9" d="M125,30V60.714h0V79.78h0L144.638,68.9l3.534-30.639Z" transform="translate(-101.828 -30)" fill="#c3002f"/>
+      <path id="Path_10" data-name="Path 10" d="M81.286,52.1,66.8,84.581h5.4l2.912-7.268h12.3l2.912,7.268h5.4L81.286,52.1Zm4.231,20.733H77.055l4.231-10.18Z" transform="translate(-58.113 -46.599)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

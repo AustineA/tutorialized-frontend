@@ -1,0 +1,16 @@
+<svg id="Figma" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="50" height="50" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_7" data-name="Mask Group 7" clip-path="url(#clip-path)">
+    <g id="Figma-logo" transform="translate(8.333)">
+      <path id="path0_fill" d="M8.333,216.667a8.336,8.336,0,0,0,8.333-8.333V200H8.333a8.333,8.333,0,0,0,0,16.667Z" transform="translate(0 -166.667)" fill="#0acf83"/>
+      <path id="path1_fill" d="M0,108.333A8.336,8.336,0,0,1,8.333,100h8.333v16.667H8.333A8.336,8.336,0,0,1,0,108.333Z" transform="translate(0 -83.333)" fill="#a259ff"/>
+      <path id="path1_fill_1_" d="M0,8.333A8.336,8.336,0,0,1,8.333,0h8.333V16.667H8.333A8.336,8.336,0,0,1,0,8.333Z" fill="#f24e1e"/>
+      <path id="path2_fill" d="M100,0h8.333a8.333,8.333,0,0,1,0,16.667H100Z" transform="translate(-83.333)" fill="#ff7262"/>
+      <path id="path3_fill" d="M116.667,108.333A8.333,8.333,0,1,1,108.333,100,8.336,8.336,0,0,1,116.667,108.333Z" transform="translate(-83.333 -83.333)" fill="#1abcfe"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg id="Vue" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="50" height="50" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_3" data-name="Mask Group 3" clip-path="url(#clip-path)">
+    <g id="vue-2" data-name="vue" transform="translate(0 3.968)">
+      <g id="Group_2" data-name="Group 2">
+        <path id="Path_4" data-name="Path 4" d="M-130.252,0l-5.788,10.025L-141.827,0H-161.1l25.062,43.409L-110.978,0Z" transform="translate(161.101)" fill="#41b883"/>
+      </g>
+      <g id="Group_3" data-name="Group 3" transform="translate(10.025)">
+        <path id="Path_5" data-name="Path 5" d="M-87.926,0l-5.788,10.025L-99.5,0h-9.249l15.037,26.045L-78.677,0Z" transform="translate(108.751)" fill="#34495e"/>
+      </g>
+    </g>
+  </g>
+</svg>

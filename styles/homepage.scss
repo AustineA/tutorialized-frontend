@@ -1,0 +1,147 @@
+.banner-title {
+  font-size: 60px;
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  background: linear-gradient(180deg, #ffffff 40%, #53ffd7 150%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tech-animated {
+  font-size: 60px;
+  text-align: center;
+  font-family: "SF Pro Display";
+  font-weight: 700;
+  color: #80ffdf;
+
+  span {
+    content: " ";
+    // border-right: 1px solid #80ffdf;
+  }
+}
+
+.banner-caption {
+  width: 736px;
+  text-align: center;
+  font-size: 30px;
+  text-shadow: 0 5px 15px black;
+  color: rgba($color: #fff, $alpha: 0.8);
+  margin-top: 20px;
+}
+
+.banner > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
+  position: relative;
+}
+
+.banner {
+  background-image: url("/images/banner_background.jpg");
+  background-position: center;
+  background-size: cover;
+  margin-top: -60px;
+
+  .button-holder {
+    position: absolute;
+    bottom: -35px;
+  }
+}
+
+.course-section {
+  color: rgba($color: white, $alpha: 0.5);
+  padding-top: 60px;
+  p {
+    text-align: center;
+  }
+}
+
+.cta-container {
+  background-image: url("/images/Slack-bg.jpg");
+  height: 700px;
+  background-size: cover;
+}
+
+.cta-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-section {
+  color: rgba($color: white, $alpha: 0.5);
+  margin-bottom: 60px;
+
+  .inner-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.testimonial-container {
+  background-image: url("/images/Testimonial-bg.jpg");
+  height: 900px;
+  background-size: cover;
+}
+
+.testimonial-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  .banner-title,
+  .tech-animated {
+    font-size: 40px;
+  }
+
+  .banner-caption {
+    width: 330px;
+    font-size: 18px;
+  }
+
+  .banner > div {
+    height: 90vh;
+  }
+
+  .banner {
+    .button-holder {
+      bottom: -25px !important;
+    }
+  }
+
+  .cta-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonial-body {
+    display: block;
+  }
+
+  .testimonial-container {
+    height: auto;
+    background-position-y: 3px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial-container {
+    height: auto;
+    background-size: auto;
+  }
+
+  .testimonial-body {
+    display: block;
+  }
+}
