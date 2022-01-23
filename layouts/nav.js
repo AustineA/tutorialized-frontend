@@ -3,7 +3,7 @@ import Modal from "./auth/modal";
 // import { useSelector, useDispatch } from "react-redux";
 import { useSnapshot } from "valtio";
 import Link from "next/link";
-import API from "../data/api";
+import API from "../services/api";
 import store, { actions } from "../store/store";
 
 const Nav = () => {

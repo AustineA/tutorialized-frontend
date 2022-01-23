@@ -2,10 +2,10 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: "http://localhost:3000",
-  withCredentials: true
+  withCredentials: process.env.NODE_ENV !== "development",
 });
 
-export const injectScript = src => {
+export const injectScript = (src) => {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
     script.async = true;
@@ -16,8 +16,6 @@ export const injectScript = src => {
     document.head.appendChild(script);
   });
 };
-
-export default API;
 
 export const verifyPaystack = async ({ ref }) => {
   try {
@@ -31,7 +29,9 @@ export const verifyPaystack = async ({ ref }) => {
     const { message } = e.response.data;
 
     toast.error(message, {
-      progressClassName: "progress-bar"
+      progressClassName: "progress-bar",
     });
   }
 };
+
+export default API;

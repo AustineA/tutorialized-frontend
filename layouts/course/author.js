@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewLesson from "./new-lesson";
 import { useSelector, useDispatch } from "react-redux";
-import API from "../../data/api";
+import API from "../../services/api";
 import Paystack from "../../components/paystack";
 import Stripe from "../paymentModal";
 
@@ -14,10 +14,10 @@ const Author = ({
   isAuthor,
   purchased,
   price,
-  currency
+  currency,
 }) => {
-  const isActive = useSelector(state => state.isActive);
-  const useStripe = useSelector(state => state.useStripe);
+  const isActive = useSelector((state) => state.isActive);
+  const useStripe = useSelector((state) => state.useStripe);
   const dispatch = useDispatch();
 
   const [canPay, setCanPay] = useState(false);
@@ -26,7 +26,7 @@ const Author = ({
     email: "austine@gmail.com",
     firtname: "Austine",
     lastname: "Amah",
-    reference: "DA-CDQTS2JU69"
+    reference: "DA-CDQTS2JU69",
   });
 
   const { email, firstname, lastname, reference } = config;
@@ -39,27 +39,27 @@ const Author = ({
 
   const open = () => {
     dispatch({
-      type: "OPEN"
+      type: "OPEN",
     });
   };
 
   const paystackNow = () => {
     dispatch({
-      type: "PAYSTACK"
+      type: "PAYSTACK",
     });
   };
 
   const payStripeNow = () => {
     dispatch({
       type: "STRIPE",
-      payload: true
+      payload: true,
     });
   };
 
-  const setClientSecret = load => {
+  const setClientSecret = (load) => {
     dispatch({
       type: "SET_STRIPE",
-      payload: load
+      payload: load,
     });
   };
   const enrole = () => {
@@ -118,7 +118,7 @@ const Author = ({
 
   const Format = ({ price, currency }) =>
     `${currency}${new Intl.NumberFormat("ng-NG", {
-      maximumSignificantDigits: 2
+      maximumSignificantDigits: 2,
     }).format(price)}`;
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../../data/api";
+import API from "../../services/api";
 import { actions } from "../../store/store";
 import { ToastContainer, toast } from "react-toastify";
 

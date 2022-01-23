@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import { injectScript } from "../data/api";
+import { injectScript } from "../services/api";
 import PaymentForm from "./paymentForm";
 
 const StripePay = () => {

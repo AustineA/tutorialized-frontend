@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { actions } from "../../store/store";
 import { ToastContainer, toast } from "react-toastify";
 
-import API from "../../data/api";
+import API from "../../services/api";
 
 const Signin = () => {
   const [f, setF] = useState({});
@@ -15,11 +15,11 @@ const Signin = () => {
       e.preventDefault();
       f.email = f.username;
 
-      await API.post("/login", { user: f });
-      let currentUrl = window.location.pathname;
-      window.location.replace(currentUrl);
+      const { data } = await API.post("/user_token", { auth: f });
+      dispatch({ type: "CLOSE" });
+      console.log(data);
     } catch (e) {
-      const { message } = e.response.data;
+      const { message } = e?.response?.data;
 
       toast.error(message, {
         progressClassName: "progress-bar",

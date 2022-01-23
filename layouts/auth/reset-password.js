@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { actions } from "../../store/store";
 
-import API from "../../data/api";
+import API from "../../services/api";
 
 const ResetPassword = () => {
   const [f, setF] = useState({});

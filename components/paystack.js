@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
-import { injectScript } from "../data/api";
+import { injectScript } from "../services/api";
 import { useSelector } from "react-redux";
-import { verifyPaystack } from "../data/api";
+import { verifyPaystack } from "../services/api";
 
 const Paystack = ({ email, amount, firstname, lastname, reference }) => {
   const [isScript, setLoad] = useState(false);
-  const usePaystack = useSelector(state => state.usePaystack);
+  const usePaystack = useSelector((state) => state.usePaystack);
   const payNow = useRef(null);
 
   const close = () => {
@@ -26,7 +26,7 @@ const Paystack = ({ email, amount, firstname, lastname, reference }) => {
     lastname: lastname,
     ref: reference,
     onClose: close,
-    callback: callBack
+    callback: callBack,
   };
 
   const initPayment = () => {
@@ -44,7 +44,7 @@ const Paystack = ({ email, amount, firstname, lastname, reference }) => {
         setLoad(true);
         console.log("Paystack loaded!");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, []);

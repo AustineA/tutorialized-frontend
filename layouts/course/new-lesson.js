@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import API from "../../data/api";
+import API from "../../services/api";
 
 const NewLesson = () => {
   const [f, setF] = useState({});
@@ -13,7 +13,7 @@ const NewLesson = () => {
 
   const lessonData = new FormData();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     Object.entries(f).map(([key, value]) => {
       lessonData.append(`lesson[${key}]`, value);
@@ -31,28 +31,28 @@ const NewLesson = () => {
     newLesson(data);
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setF({ ...f, [e.target.name]: e.target.value.trim() });
   };
 
-  const handleSelected = e => {
+  const handleSelected = (e) => {
     setF({ ...f, [e.target.name]: e.target.files[0] });
     setNames({
       ...fileNames,
-      [e.target.name + "_name"]: e.target.files[0].name
+      [e.target.name + "_name"]: e.target.files[0].name,
     });
   };
 
   const close = () => {
     dispatch({
-      type: "CLOSE"
+      type: "CLOSE",
     });
   };
 
-  const newLesson = lesson => {
+  const newLesson = (lesson) => {
     dispatch({
       type: "NEW_LESSON",
-      payload: lesson
+      payload: lesson,
     });
   };
 
