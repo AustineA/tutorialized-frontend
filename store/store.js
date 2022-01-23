@@ -1,6 +1,8 @@
 import { proxy, snapshot } from "valtio";
 
 const store = proxy({
+  token: null,
+  userInfo: null,
   nowPlaying: "",
   canPlay: false,
   course: {},
@@ -15,6 +17,11 @@ const store = proxy({
 
 const actions = (action, state = snapshot(store)) => {
   switch (action.type) {
+    case "SET_USER":
+      store.userInfo = action.payload.user;
+      store.token = action.payload.token;
+      break;
+
     case "NOW_PLAYING":
       store.nowPlaying = action.payload.video;
       store.canPlay = action.payload.canPlay;

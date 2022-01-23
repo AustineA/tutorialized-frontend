@@ -3,11 +3,9 @@ import Modal from "./auth/modal";
 // import { useSelector, useDispatch } from "react-redux";
 import { useSnapshot } from "valtio";
 import Link from "next/link";
-import API from "../services/api";
 import store, { actions } from "../store/store";
 
 const Nav = () => {
-  const isUser = false;
   const state = useSnapshot(store);
 
   const [isAuth, setAuth] = useState(false);
@@ -27,10 +25,7 @@ const Nav = () => {
   const logOut = async () => {
     setAuth(false);
     setOpen(!isOpen);
-
-    // await API.get("/logout");
-    console.log("logout");
-    // window.location.href = `/`;
+    localStorage.clear();
   };
 
   const signin = () => {
@@ -54,17 +49,19 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    setAuth(isUser);
-    if (isUser) {
-      setName(isUser.fName);
-      setAuthor(isUser.author);
+    const userInfo = localStorage.getItem("userInfo");
+
+    if (userInfo) {
+      const user = JSON.parse(userInfo);
+      store.userInfo = user;
     }
   }, []);
 
-  const activeLink = (path) => {
-    let currentPath = "/";
-    return path === currentPath ? "active-link" : "";
-  };
+  useEffect(() => {
+    setAuth(state.userInfo);
+    setName(state.userInfo?.firstName);
+    setAuthor(state.userInfo?.author);
+  }, [state.userInfo]);
 
   return (
     <>

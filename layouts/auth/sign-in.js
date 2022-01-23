@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { actions } from "../../store/store";
 import { ToastContainer, toast } from "react-toastify";
-
 import API from "../../services/api";
 
 const Signin = () => {
@@ -16,12 +15,20 @@ const Signin = () => {
       f.email = f.username;
 
       const { data } = await API.post("/user_token", { auth: f });
+      const { user } = data;
+      const message = `Welcome ${user.firstName} ${user.lastName}`;
+      localStorage.setItem("token", data.jwt);
+      localStorage.setItem("userInfo", JSON.stringify(user));
+
+      toast.success(message, {
+        progressClassName: "progress-bar",
+      });
+
       dispatch({ type: "CLOSE" });
+      dispatch({ type: "SET_USER", payload: { user, token: data.jwt } });
       console.log(data);
     } catch (e) {
-      const { message } = e?.response?.data;
-
-      toast.error(message, {
+      toast.error("Username or password incorrect", {
         progressClassName: "progress-bar",
       });
     }

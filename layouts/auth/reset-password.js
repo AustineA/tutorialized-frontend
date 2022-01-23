@@ -21,13 +21,6 @@ const ResetPassword = () => {
     setF({ ...f, [e.target.name]: e.target.value.trim() });
   };
 
-  const iForgot = () => {
-    dispatch({
-      type: "OPEN",
-      payload: "RESET",
-    });
-  };
-
   const signUp = () => {
     dispatch({
       type: "OPEN",
