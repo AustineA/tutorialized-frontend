@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
 import API from "../../data/api";
 
 const Signin = () => {
   const [f, setF] = useState({});
-  const dispatch = useDispatch();
+  const dispatch = [];
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       f.email = f.username;
@@ -20,26 +20,26 @@ const Signin = () => {
       const { message } = e.response.data;
 
       toast.error(message, {
-        progressClassName: "progress-bar"
+        progressClassName: "progress-bar",
       });
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setF({ ...f, [e.target.name]: e.target.value.trim() });
   };
 
   const signUp = () => {
     dispatch({
       type: "OPEN",
-      payload: "SIGNUP"
+      payload: "SIGNUP",
     });
   };
 
   const iForgot = () => {
     dispatch({
       type: "OPEN",
-      payload: "RESET"
+      payload: "RESET",
     });
   };
 

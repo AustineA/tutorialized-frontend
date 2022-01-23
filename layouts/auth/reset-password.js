@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import API from "../../data/api";
 
 const ResetPassword = () => {
   const [f, setF] = useState({});
-  const dispatch = useDispatch();
+  const dispatch = [];
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await API.post("/users/iforgot", { user: f });
     console.log(user.data);
@@ -15,21 +15,21 @@ const ResetPassword = () => {
     window.location.replace(currentUrl);
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setF({ ...f, [e.target.name]: e.target.value.trim() });
   };
 
   const iForgot = () => {
     dispatch({
       type: "OPEN",
-      payload: "RESET"
+      payload: "RESET",
     });
   };
 
   const signUp = () => {
     dispatch({
       type: "OPEN",
-      payload: "SIGNUP"
+      payload: "SIGNUP",
     });
   };
 

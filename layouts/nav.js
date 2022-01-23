@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import "../style/app.scss";
 import Modal from "./auth/modal";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
+import Link from "next/link";
 import API from "../data/api";
 
 const Nav = () => {
-  const node = document.querySelector(".nav");
-  const isUser = JSON.parse(node.dataset.current_user);
+  const isUser = false;
 
   const [isAuth, setAuth] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const [firsName, setName] = useState("Austine");
   const [isAuthor, setAuthor] = useState(false);
 
-  const isActive = useSelector((state) => state.isActive);
-  const dispatch = useDispatch();
+  const isActive = false;
+  const dispatch = false;
 
   const openMenu = () => {
     setOpen(!isOpen);
@@ -26,12 +25,10 @@ const Nav = () => {
 
     await API.get("/logout");
     // window.location.href = `/`;
-    let currentUrl = window.location.pathname;
-    window.location.replace(currentUrl);
   };
 
   const newCourse = () => {
-    window.location.href = `/courses/new`;
+    // window.location.href = `/courses/new`;
   };
 
   const signin = () => {
@@ -49,7 +46,7 @@ const Nav = () => {
   };
 
   const gotoCourse = () => {
-    window.location.href = `/${firsName}/courses`;
+    // window.location.href = `/${firsName}/courses`;
   };
 
   useEffect(() => {
@@ -61,20 +58,25 @@ const Nav = () => {
   }, []);
 
   const activeLink = (path) => {
-    let currentPath = window.location.pathname;
+    let currentPath = "/";
     return path === currentPath ? "active-link" : "";
   };
 
   return (
     <>
-      <a href="/" className="logo">
-        <img src={"/images/Logo.svg"} />
-      </a>
+      <Link href="/">
+        <a className="logo">
+          <img src={"/images/Logo.svg"} />
+        </a>
+      </Link>
+
       <ul>
         {Links.map((link, index) => (
-          <a href={link.link} key={index} className={activeLink(link.link)}>
-            <li> {link.name}</li>
-          </a>
+          <li key={index} className={activeLink(link.link)}>
+            <Link href={link.link}>
+              <a> {link.name}</a>
+            </Link>
+          </li>
         ))}
         {!isAuth && (
           <a

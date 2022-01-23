@@ -1,11 +1,28 @@
-import React from "react";
+import { useEffect, useRef } from "react";
 import Tech from "../../components/logos";
 import Button from "../../components/button";
-// import Typed from "react-typed";
-
-const techTools = ["iOS", "Android", "React", "Vue", "Web", "Angular"];
+import Typed from "typed.js";
 
 const Banner = () => {
+  const techTools = ["iOS", "Android", "React", "Vue", "Web", "Angular"];
+  const el = useRef(null);
+  const typed = useRef(null);
+
+  useEffect(() => {
+    const options = {
+      strings: techTools,
+      typeSpeed: 50,
+      backSpeed: 50,
+      loop: true,
+    };
+
+    typed.current = new Typed(el.current, options);
+
+    return () => {
+      typed.current.destroy();
+    };
+  }, []);
+
   return (
     <div className="banner">
       <div>
@@ -13,13 +30,7 @@ const Banner = () => {
           Learn to <br /> design and code
         </h1>
         <h1 className="tech-animated">
-          {/* <Typed
-            strings={techTools}
-            typeSpeed={300}
-            backSpeed={100}
-            backDelay={1500}
-            loop
-          />{" "} */}
+          <span ref={el}></span>
           apps
         </h1>
         <p className="banner-caption">

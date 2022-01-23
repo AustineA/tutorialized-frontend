@@ -2,18 +2,18 @@ import React from "react";
 import Signin from "./sign-in";
 import Signup from "./sign-up";
 import ResetPassword from "./reset-password";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 
 const Modal = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const close = () => {
-    dispatch({
-      type: "CLOSE"
-    });
+    // dispatch({
+    //   type: "CLOSE",
+    // });
   };
 
-  const load = useSelector(state => state.component);
+  const load = false;
 
   return (
     <div className="modal-container">
