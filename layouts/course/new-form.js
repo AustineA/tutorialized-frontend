@@ -8,9 +8,9 @@ const NewForm = () => {
   const featuredImage = useRef(null);
   const posterImage = useRef(null);
 
-  const courseData = new FormData();
+  const courseData = new URLSearchParams();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     Object.entries(f).map(([key, value]) => {
@@ -18,21 +18,21 @@ const NewForm = () => {
     });
 
     const {
-      data: { slug }
+      data: { slug },
     } = await API.post("courses", courseData);
 
     window.location.href = `/courses/${slug}`;
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setF({ ...f, [e.target.name]: e.target.value.trim() });
   };
 
-  const handleSelected = e => {
+  const handleSelected = (e) => {
     setF({ ...f, [e.target.name]: e.target.files[0] });
     setNames({
       ...fileNames,
-      [e.target.name + "_name"]: e.target.files[0].name
+      [e.target.name + "_name"]: e.target.files[0].name,
     });
   };
 

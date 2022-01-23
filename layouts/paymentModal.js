@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import StripePay from "../components/stripe";
-import "../style/stripe.scss";
 
 const Modal = () => {
   const dispatch = useDispatch();
@@ -9,12 +8,12 @@ const Modal = () => {
   const close = () => {
     dispatch({
       type: "STRIPE",
-      payload: false
+      payload: false,
     });
   };
 
   return (
-    <div className="modal-container">
+    <div className="modal-container tut-stripe">
       <div className="modal-body">
         <span className="modal-close" onClick={close}>
           X

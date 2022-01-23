@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./auth/modal";
 // import { useSelector, useDispatch } from "react-redux";
+import { useSnapshot } from "valtio";
 import Link from "next/link";
 import API from "../data/api";
+import store, { actions } from "../store/store";
 
 const Nav = () => {
   const isUser = false;
+  const state = useSnapshot(store);
 
   const [isAuth, setAuth] = useState(false);
   const [isOpen, setOpen] = useState(false);
   const [firsName, setName] = useState("Austine");
   const [isAuthor, setAuthor] = useState(false);
 
-  const isActive = false;
-  const dispatch = false;
+  const isActive = state.isActive;
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const openMenu = () => {
     setOpen(!isOpen);
@@ -23,12 +28,9 @@ const Nav = () => {
     setAuth(false);
     setOpen(!isOpen);
 
-    await API.get("/logout");
+    // await API.get("/logout");
+    console.log("logout");
     // window.location.href = `/`;
-  };
-
-  const newCourse = () => {
-    // window.location.href = `/courses/new`;
   };
 
   const signin = () => {
@@ -36,6 +38,8 @@ const Nav = () => {
       type: "OPEN",
       payload: "SIGNIN",
     });
+    // store.isActive = true;
+    console.log(state.isActive);
   };
 
   const signUp = () => {
@@ -113,8 +117,12 @@ const Nav = () => {
                   Account <span>Manage your account</span>
                 </li>
                 {isAuthor && (
-                  <li onClick={newCourse} className="new-course">
-                    New Course <span>Add a new course</span>
+                  <li className="new-course">
+                    <Link href="/courses/new">
+                      <a>
+                        New Course <span>Add a new course</span>
+                      </a>
+                    </Link>
                   </li>
                 )}
                 <li onClick={logOut}>Logout</li>

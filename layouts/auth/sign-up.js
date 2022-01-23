@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import API from "../../data/api";
-// import { useDispatch } from "react-redux";
+import { actions } from "../../store/store";
 import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
   const [f, setF] = useState({});
-  const dispatch = [];
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();

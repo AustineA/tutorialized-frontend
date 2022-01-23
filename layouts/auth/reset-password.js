@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { actions } from "../../store/store";
 
 import API from "../../data/api";
 
 const ResetPassword = () => {
   const [f, setF] = useState({});
-  const dispatch = [];
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
