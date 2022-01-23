@@ -76,7 +76,7 @@ const Nav = () => {
 
       <ul>
         {Links.map((link, index) => (
-          <li key={index} className={activeLink(link.link)}>
+          <li key={index}>
             <Link href={link.link}>
               <a> {link.name}</a>
             </Link>
@@ -85,7 +85,7 @@ const Nav = () => {
         {!isAuth && (
           <a
             href="#"
-            className={`get-started ${activeLink} nav-get-started`}
+            className={`get-started nav-get-started`}
             onClick={signUp}
           >
             <li>Get Started</li>

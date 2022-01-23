@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Courses = ({ courses }) => {
-  const goToCourse = url => {
-    window.location.href = url;
+  const goToCourse = (url) => {
+    console.log(url);
   };
 
   return (
@@ -14,7 +14,7 @@ const Courses = ({ courses }) => {
           style={{
             backgroundImage: `url(${image})`,
             backgroundSize: "cover",
-            backgroundRepeat: "no-repeat"
+            backgroundRepeat: "no-repeat",
           }}
           onClick={() => {
             goToCourse(url);

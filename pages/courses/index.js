@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import Heading from "../components/heading";
-import CoursesCard from "../components/courseCard";
-import Footer from "../layouts/footer";
+import Heading from "../../components/heading";
+import CoursesCard from "../../components/courseCard";
+import Footer from "../../layouts/footer";
 
 const Courses = () => {
-  const node = document.querySelector(".coursespage");
-  const courses = JSON.parse(node.dataset.courses);
+  const courses = [];
 
   return (
     <div className="course">
