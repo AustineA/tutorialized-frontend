@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./auth/modal";
-// import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 import { useSnapshot } from "valtio";
 import Link from "next/link";
 import store, { actions } from "../store/store";
@@ -12,6 +12,8 @@ const Nav = () => {
   const [isOpen, setOpen] = useState(false);
   const [firsName, setName] = useState("Austine");
   const [isAuthor, setAuthor] = useState(false);
+
+  const router = useRouter();
 
   const isActive = state.isActive;
   const dispatch = (action) => {
@@ -46,6 +48,11 @@ const Nav = () => {
 
   const gotoCourse = () => {
     // window.location.href = `/${firsName}/courses`;
+  };
+
+  const newCourse = () => {
+    openMenu();
+    router.push("/courses/new");
   };
 
   useEffect(() => {
@@ -114,12 +121,9 @@ const Nav = () => {
                   Account <span>Manage your account</span>
                 </li>
                 {isAuthor && (
-                  <li className="new-course">
-                    <Link href="/courses/new">
-                      <a>
-                        New Course <span>Add a new course</span>
-                      </a>
-                    </Link>
+                  <li className="new-course" onClick={newCourse}>
+                    New Course
+                    <span>Add a new course</span>
                   </li>
                 )}
                 <li onClick={logOut}>Logout</li>

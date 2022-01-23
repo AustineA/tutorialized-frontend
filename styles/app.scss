@@ -52,6 +52,10 @@ nav {
   z-index: 10;
   background: #313d56;
 
+  .new-course a {
+    margin-right: 0;
+  }
+
   a {
     margin-right: 40px;
     font-family: "SF Pro Text";
@@ -84,18 +88,20 @@ nav {
     }
 
     .drop-down-inner ul {
+      z-index: 10000;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-around;
       position: absolute;
-      top: 45px;
+      top: 50px;
       right: -80px;
       width: 171px;
       height: 155px;
       padding: 20px;
       background: #313d56;
       border-radius: 20px;
+      border: 1px solid #53ffd7;
       // box-shadow: 0 10px 20px rgba($color: #d6fdf4, $alpha: 0.15);
 
       li {
@@ -298,6 +304,15 @@ nav {
   z-index: 100;
   display: flex;
   padding-bottom: 100px;
+}
+
+.new-course-page {
+  position: relative;
+  z-index: 0;
+
+  .modal-body {
+    margin: 50px auto;
+  }
 }
 
 .new-coursepage {

@@ -40,7 +40,6 @@ const NewForm = () => {
     <div>
       <div className="modal-header">
         <h3 className="modal-title">Add New Course</h3>
-        <span>Sign up to continue</span>
       </div>
       <div className="modal-content">
         <form onSubmit={handleSubmit}>
