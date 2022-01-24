@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { actions } from "../../store/store";
 import { useRouter } from "next/router";
 import API from "../../services/api";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const NewLesson = () => {
   const { asPath } = useRouter();

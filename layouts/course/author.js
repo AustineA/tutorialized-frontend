@@ -4,7 +4,6 @@ import { useSnapshot } from "valtio";
 import store, { actions } from "../../store/store";
 import API from "../../services/api";
 import Paystack from "../../components/paystack";
-import Stripe from "../paymentModal";
 import { useRouter } from "next/router";
 
 const Author = ({
@@ -26,7 +25,8 @@ const Author = ({
     actions(action);
   };
 
-  const [canPay, setCanPay] = useState(state.userInfo);
+  const [canPay, setCanPay] = useState(false);
+  const [usePaystack, setPaystack] = useState(false);
 
   const [config, setConfig] = useState({
     email: "austine@gmail.com",
@@ -88,7 +88,15 @@ const Author = ({
 
   const free = async () => {
     try {
-      const { data } = await API.post(asPath + "/orders");
+      const token = window.localStorage.getItem("token");
+
+      const { data } = await API.post(
+        asPath + "/orders",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
     } catch (e) {
       console.log(e.response.data);
     }
@@ -96,9 +104,18 @@ const Author = ({
 
   const paystackPayment = async () => {
     try {
-      const { data } = await API.post(asPath + "/orders");
+      const token = window.localStorage.getItem("token");
+
+      const { data } = await API.post(
+        asPath + "/orders",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setConfig(data);
       setCanPay(true);
+      setPaystack(true);
     } catch (e) {
       console.log(e.response.data);
     }
@@ -176,6 +193,7 @@ const Author = ({
         firstname={firstname}
         lastname={lastname}
         reference={reference}
+        usePaystack={usePaystack}
       />
     </div>
   );

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const API = axios.create({
   baseURL: "http://localhost:3000",
@@ -21,7 +22,10 @@ export const verifyPaystack = async ({ ref }) => {
   try {
     const { data } = await API.get(`/orders/verify/${ref}`);
     const { message } = data;
-    console.log(message);
+
+    toast.success(`${message} Uploaded Successfuly`, {
+      progressClassName: "progress-bar",
+    });
 
     let currentUrl = window.location.pathname;
     window.location.replace(currentUrl);

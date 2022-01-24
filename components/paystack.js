@@ -1,14 +1,21 @@
 import React, { useEffect, useState, useRef } from "react";
 import { injectScript } from "../services/api";
 import { useSnapshot } from "valtio";
+import { subscribeKey } from "valtio/utils";
 import { verifyPaystack } from "../services/api";
 import store from "../store/store";
 
-const Paystack = ({ email, amount, firstname, lastname, reference }) => {
+const Paystack = ({
+  email,
+  amount,
+  firstname,
+  lastname,
+  reference,
+  usePaystack,
+}) => {
   const state = useSnapshot(store);
 
   const [isScript, setLoad] = useState(false);
-  const usePaystack = state.usePaystack;
   const payNow = useRef(null);
 
   const close = () => {
@@ -56,6 +63,8 @@ const Paystack = ({ email, amount, firstname, lastname, reference }) => {
     if (usePaystack) {
       payNow.current.click();
     }
+
+    console.log(usePaystack);
   }, [usePaystack]);
 
   return (
