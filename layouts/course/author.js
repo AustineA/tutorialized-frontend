@@ -19,7 +19,7 @@ const Author = ({
   currency,
 }) => {
   const state = useSnapshot(store);
-  const { asPath, pathname } = useRouter();
+  const { asPath } = useRouter();
 
   const component = state.component;
   const useStripe = state.useStripe;
@@ -94,7 +94,7 @@ const Author = ({
 
   const free = async () => {
     try {
-      const { data } = await API.post(pathname + "/orders");
+      const { data } = await API.post(asPath + "/orders");
     } catch (e) {
       console.log(e.response.data);
     }
@@ -102,7 +102,7 @@ const Author = ({
 
   const paystackPayment = async () => {
     try {
-      const { data } = await API.post(pathname + "/orders");
+      const { data } = await API.post(asPath + "/orders");
       setConfig(data);
       setCanPay(true);
     } catch (e) {
@@ -112,7 +112,7 @@ const Author = ({
 
   const stripePayment = async () => {
     try {
-      const { data } = await API.post(pathname + "/orders?stripe=true");
+      const { data } = await API.post(asPath + "/orders?stripe=true");
       console.log(data);
       setClientSecret(data);
       payStripeNow();

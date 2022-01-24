@@ -64,6 +64,7 @@ const Image = styled.img`
   height: 63px;
   border-radius: 15px;
   margin-right: 20px;
+  object-fit: cover;
 `;
 
 const Title = styled.p`

@@ -5,7 +5,7 @@ import store from "../../store/store";
 const VideoHolder = () => {
   const state = useSnapshot(store);
   const video = useRef(null);
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState("80%");
 
   const videoUrl = state.nowPlaying;
   const canPlay = state.canPlay;

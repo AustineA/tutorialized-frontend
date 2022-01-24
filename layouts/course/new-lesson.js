@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import { actions } from "../../store/store";
 import { useRouter } from "next/router";
 import API from "../../services/api";
+import { ToastContainer, toast } from "react-toastify";
 
 const NewLesson = () => {
-  const { asPath, pathname } = useRouter();
+  const { asPath } = useRouter();
   const [f, setF] = useState({});
   const [fileNames, setNames] = useState({});
   const video = useRef(null);
@@ -18,18 +19,29 @@ const NewLesson = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Object.entries(f).map(([key, value]) => {
-      lessonData.append(`lesson[${key}]`, value);
-    });
+    try {
+      Object.entries(f).map(([key, value]) => {
+        lessonData.append(`lesson[${key}]`, value);
+      });
 
-    const { data } = await API.post(`${pathname}/lessons`, lessonData);
-    console.log(data);
+      const token = window.localStorage.getItem("token");
 
-    for (var pair of lessonData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
+      const { data } = await API.post(
+        `${asPath.replace("#", "")}/lessons`,
+        lessonData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      close();
+      newLesson(data);
+
+      toast.success(`${data.title} Uploaded Successfuly`, {
+        progressClassName: "progress-bar",
+      });
+    } catch (e) {
+      console.log(e);
     }
-
-    newLesson(data);
   };
 
   const handleChange = (e) => {

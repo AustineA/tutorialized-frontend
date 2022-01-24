@@ -117,9 +117,6 @@ const Nav = () => {
                 <li onClick={gotoCourse}>
                   My courses <span>All courses you paid for</span>
                 </li>
-                <li>
-                  Account <span>Manage your account</span>
-                </li>
                 {isAuthor && (
                   <li className="new-course" onClick={newCourse}>
                     New Course

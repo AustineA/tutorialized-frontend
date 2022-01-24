@@ -86,8 +86,6 @@ const Course = ({ loggedIn, url }) => {
 export async function getServerSideProps(ctx) {
   let { IS_USER_LOGGED_IN: loggedIn } = cookies(ctx);
   loggedIn ||= null;
-
-  console.log(ctx);
   return {
     props: { loggedIn, url: ctx.resolvedUrl }, // will be passed to the page component as props
   };
