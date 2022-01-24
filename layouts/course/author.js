@@ -5,6 +5,7 @@ import store, { actions } from "../../store/store";
 import API from "../../services/api";
 import Paystack from "../../components/paystack";
 import Stripe from "../paymentModal";
+import { useRouter } from "next/router";
 
 const Author = ({
   author,
@@ -18,14 +19,15 @@ const Author = ({
   currency,
 }) => {
   const state = useSnapshot(store);
+  const { asPath, pathname } = useRouter();
 
-  const isActive = state.isActive;
+  const component = state.component;
   const useStripe = state.useStripe;
   const dispatch = (action) => {
     actions(action);
   };
 
-  const [canPay, setCanPay] = useState(false);
+  const [canPay, setCanPay] = useState(state.userInfo);
 
   const [config, setConfig] = useState({
     email: "austine@gmail.com",
@@ -36,15 +38,20 @@ const Author = ({
 
   const { email, firstname, lastname, reference } = config;
 
-  const node = document.querySelector(".nav");
-  const isUser = JSON.parse(node.dataset.current_user);
-  const country = JSON.parse(node.dataset.country);
-
-  const signUp = document.querySelector(".nav-get-started");
+  const [isUser, setUser] = useState(false);
+  const country = "";
 
   const open = () => {
     dispatch({
       type: "OPEN",
+      payload: "LESSON",
+    });
+  };
+
+  const signUp = () => {
+    dispatch({
+      type: "OPEN",
+      payload: "SIGNUP",
     });
   };
 
@@ -73,7 +80,7 @@ const Author = ({
     } else if (isUser && price > 0) {
       paid();
     } else {
-      signUp.click();
+      signUp();
     }
   };
 
@@ -86,21 +93,16 @@ const Author = ({
   };
 
   const free = async () => {
-    let currentUrl = window.location.pathname;
-
     try {
-      const { data } = await API.post(currentUrl + "/orders");
-      window.location.replace(currentUrl);
+      const { data } = await API.post(pathname + "/orders");
     } catch (e) {
       console.log(e.response.data);
     }
   };
 
   const paystackPayment = async () => {
-    let currentUrl = window.location.pathname;
-
     try {
-      const { data } = await API.post(currentUrl + "/orders");
+      const { data } = await API.post(pathname + "/orders");
       setConfig(data);
       setCanPay(true);
     } catch (e) {
@@ -109,10 +111,8 @@ const Author = ({
   };
 
   const stripePayment = async () => {
-    let currentUrl = window.location.pathname;
-
     try {
-      const { data } = await API.post(currentUrl + "/orders?stripe=true");
+      const { data } = await API.post(pathname + "/orders?stripe=true");
       console.log(data);
       setClientSecret(data);
       payStripeNow();
@@ -170,7 +170,7 @@ const Author = ({
           )}
         </div>
       </div>
-      {isActive && <NewLesson />}
+      {component === "LESSON" ? <NewLesson /> : null}
       <Paystack
         email={email}
         amount={price}

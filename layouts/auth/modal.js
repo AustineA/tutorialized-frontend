@@ -24,9 +24,9 @@ const Modal = () => {
           <Signin />
         ) : load === "SIGNUP" ? (
           <Signup />
-        ) : (
+        ) : load == "RESET" ? (
           <ResetPassword />
-        )}
+        ) : null}
       </div>
     </div>
   );

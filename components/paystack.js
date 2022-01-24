@@ -8,7 +8,7 @@ const Paystack = ({ email, amount, firstname, lastname, reference }) => {
   const state = useSnapshot(store);
 
   const [isScript, setLoad] = useState(false);
-  const usePaystack = usePaystack;
+  const usePaystack = state.usePaystack;
   const payNow = useRef(null);
 
   const close = () => {

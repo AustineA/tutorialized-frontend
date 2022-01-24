@@ -1,8 +1,10 @@
 import React from "react";
-import { CardElement, injectStripe } from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import store, { actions } from "../store/store";
 
-const PaymentForm = ({ elements, stripe }) => {
+const PaymentForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
   const state = useSnapshot(store);
   //
   const { clientSecret, name, email } = state.order;
@@ -20,7 +22,7 @@ const PaymentForm = ({ elements, stripe }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const cardElement = elements.getElement("card");
+    const cardElement = elements.getElement(CardElement);
 
     const { paymentIntent, error } = await stripe.confirmCardPayment(
       clientSecret,
@@ -54,4 +56,4 @@ const PaymentForm = ({ elements, stripe }) => {
   );
 };
 
-export default injectStripe(PaymentForm);
+export default PaymentForm;

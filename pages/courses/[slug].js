@@ -11,8 +11,7 @@ import API, { injectScript } from "../../services/api";
 import cookies from "next-cookies";
 import { useRouter } from "next/router";
 
-const Course = () => {
-  const { asPath, pathname } = useRouter();
+const Course = ({ loggedIn, url }) => {
   const router = useRouter();
   const state = useSnapshot(store);
   const [course, setCourse] = useState(state.course);
@@ -33,23 +32,21 @@ const Course = () => {
   }, [course]);
 
   useEffect(async () => {
-    if (loggedIn !== "user_is_logged_in") {
-      dispatch({
-        type: "OPEN",
-        payload: "SIGNIN",
+    try {
+      const token = window.localStorage.getItem("token");
+      const { data } = await API.get(url, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-      router.push("/");
-      return;
-    }
+      setCourse(data);
+      dispatch({
+        type: "LOAD_COURSE",
+        payload: data,
+      });
 
-    const { data } = await API.get(pathname, {
-      headers: { Authorization: `Bearer ${state.token}` },
-    });
-    setCourse(data);
-    dispatch({
-      type: "LOAD_COURSE",
-      payload: data,
-    });
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   useEffect(() => {
@@ -89,8 +86,10 @@ const Course = () => {
 export async function getServerSideProps(ctx) {
   let { IS_USER_LOGGED_IN: loggedIn } = cookies(ctx);
   loggedIn ||= null;
+
+  console.log(ctx);
   return {
-    props: { loggedIn }, // will be passed to the page component as props
+    props: { loggedIn, url: ctx.resolvedUrl }, // will be passed to the page component as props
   };
 }
 
