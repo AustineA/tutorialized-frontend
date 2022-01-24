@@ -144,7 +144,7 @@ const Links = [
   },
   {
     name: "Guides",
-    link: "/guides",
+    link: "#",
   },
   {
     name: "Community",

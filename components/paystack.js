@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { injectScript } from "../services/api";
 import { useSnapshot } from "valtio";
-import { subscribeKey } from "valtio/utils";
 import { verifyPaystack } from "../services/api";
 import store from "../store/store";
 

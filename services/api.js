@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 
 const API = axios.create({
   baseURL: "http://localhost:3000",
-  withCredentials: process.env.NODE_ENV !== "development",
 });
 
 export const injectScript = (src) => {
