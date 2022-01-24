@@ -1,15 +1,18 @@
 import React, { useState, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
+import { actions } from "../../store/store";
+import { useRouter } from "next/router";
 import API from "../../services/api";
 
 const NewLesson = () => {
+  const { asPath, pathname } = useRouter();
   const [f, setF] = useState({});
   const [fileNames, setNames] = useState({});
   const video = useRef(null);
   const coverImage = useRef(null);
 
-  const dispatch = useDispatch();
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const lessonData = new FormData();
 
@@ -19,9 +22,7 @@ const NewLesson = () => {
       lessonData.append(`lesson[${key}]`, value);
     });
 
-    let currentUrl = window.location.pathname;
-
-    const { data } = await API.post(`${currentUrl}/lessons`, lessonData);
+    const { data } = await API.post(`${pathname}/lessons`, lessonData);
     console.log(data);
 
     for (var pair of lessonData.entries()) {

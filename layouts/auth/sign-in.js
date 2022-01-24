@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { actions } from "../../store/store";
 import { ToastContainer, toast } from "react-toastify";
 import API from "../../services/api";
+import Cookie from "js-cookie";
 
 const Signin = () => {
   const [f, setF] = useState({});
@@ -20,12 +21,17 @@ const Signin = () => {
       localStorage.setItem("token", data.jwt);
       localStorage.setItem("userInfo", JSON.stringify(user));
 
+      Cookie.set("IS_USER_LOGGED_IN", "user_is_logged_in", {
+        expires: 3,
+      });
+
       toast.success(message, {
         progressClassName: "progress-bar",
       });
 
       dispatch({ type: "CLOSE" });
       dispatch({ type: "SET_USER", payload: { user, token: data.jwt } });
+
       console.log(data);
     } catch (e) {
       toast.error("Username or password incorrect", {

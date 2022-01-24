@@ -1,9 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { actions } from "../store/store";
 import StripePay from "../components/stripe";
 
 const Modal = () => {
-  const dispatch = useDispatch();
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const close = () => {
     dispatch({

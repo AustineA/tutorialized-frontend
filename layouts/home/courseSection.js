@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Heading from "../../components/heading";
 import Courses from "../../components/courseCard";
+import API from "../../services/api";
+import store from "../../store/store";
+import { useSnapshot } from "valtio";
 
 const CourseSection = () => {
-  const courses = [];
+  const state = useSnapshot(store);
+  const [courses, setCourses] = useState(state.courses);
+
+  useEffect(async () => {
+    if (courses.length > 0) return;
+
+    const { data } = await API.get("/courses");
+    store.courses = data;
+    setCourses(data);
+  }, []);
 
   return (
     <div className="course-section">

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Lesson from "../../components/lessionList";
-import { useSelector } from "react-redux";
+import { useSnapshot } from "valtio";
+import store from "../../store/store";
 
 const Playlist = ({ title }) => {
-  const course = useSelector(state => state.course);
+  const state = useSnapshot(store);
+
+  const course = state.course;
   const [lessons, setLessons] = useState();
 
   useEffect(() => {

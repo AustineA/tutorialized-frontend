@@ -1,20 +1,23 @@
 import React from "react";
-import { CardElement, injectStripe } from "react-stripe-elements";
-import { useSelector, useDispatch } from "react-redux";
+import { CardElement, injectStripe } from "@stripe/react-stripe-js";
+import store, { actions } from "../store/store";
 
 const PaymentForm = ({ elements, stripe }) => {
+  const state = useSnapshot(store);
   //
-  const { clientSecret, name, email } = useSelector(state => state.order);
-  const dispatch = useDispatch();
+  const { clientSecret, name, email } = state.order;
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const close = () => {
     dispatch({
       type: "STRIPE",
-      payload: false
+      payload: false,
     });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const cardElement = elements.getElement("card");
@@ -26,9 +29,9 @@ const PaymentForm = ({ elements, stripe }) => {
           card: cardElement,
           billing_details: {
             name,
-            email
-          }
-        }
+            email,
+          },
+        },
       }
     );
 

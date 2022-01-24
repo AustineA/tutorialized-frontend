@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { injectScript } from "../services/api";
-import { useSelector } from "react-redux";
+import { useSnapshot } from "valtio";
 import { verifyPaystack } from "../services/api";
+import store from "../store/store";
 
 const Paystack = ({ email, amount, firstname, lastname, reference }) => {
+  const state = useSnapshot(store);
+
   const [isScript, setLoad] = useState(false);
-  const usePaystack = useSelector((state) => state.usePaystack);
+  const usePaystack = usePaystack;
   const payNow = useRef(null);
 
   const close = () => {

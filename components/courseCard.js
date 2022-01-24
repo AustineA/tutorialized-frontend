@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const Courses = ({ courses }) => {
+  const router = useRouter();
+
   const goToCourse = (url) => {
     console.log(url);
+    router.push(url);
   };
 
   return (

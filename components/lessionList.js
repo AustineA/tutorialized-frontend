@@ -1,11 +1,17 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useSnapshot } from "valtio";
+import store, { actions } from "../store/store";
 
 const Lesson = () => {
-  const Lessons = useSelector((state) => state.course.lessons);
-  const dispatch = useDispatch();
-  const videoUrl = useSelector((state) => state.nowPlaying);
+  const state = useSnapshot(store);
+
+  const Lessons = state.course.lessons;
+  const videoUrl = state.nowPlaying;
+
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   // useEffect(() => {}, [Lessons]);
   const play = (video, locked, cover) => {

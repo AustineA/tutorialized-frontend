@@ -8,6 +8,7 @@ const store = proxy({
   course: {},
   isActive: false,
   component: "",
+  courses: [],
   cover: "",
   usePaystack: false,
   useStripe: false,

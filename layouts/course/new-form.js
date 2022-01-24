@@ -1,14 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import API from "../../services/api";
+import { useRouter } from "next/router";
 
 const NewForm = () => {
+  const router = useRouter();
+
   const [f, setF] = useState({});
   const [fileNames, setNames] = useState({});
   const introVideo = useRef(null);
   const featuredImage = useRef(null);
   const posterImage = useRef(null);
 
-  const courseData = new URLSearchParams();
+  const courseData = new FormData();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,11 +20,15 @@ const NewForm = () => {
       courseData.append(`course[${key}]`, value);
     });
 
+    const token = localStorage.getItem("token");
+
     const {
       data: { slug },
-    } = await API.post("courses", courseData);
+    } = await API.post("courses", courseData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
 
-    window.location.href = `/courses/${slug}`;
+    router.push(`/courses/${slug}`);
   };
 
   const handleChange = (e) => {
@@ -70,7 +77,7 @@ const NewForm = () => {
             <input
               type="number"
               name="price"
-              placeholder="$250"
+              placeholder="₦3500"
               onChange={handleChange}
             />
           </div>

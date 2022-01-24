@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSnapshot } from "valtio";
+import store from "../../store/store";
 
 const VideoHolder = () => {
+  const state = useSnapshot(store);
   const video = useRef(null);
   const [width, setWidth] = useState(window.innerWidth);
 
-  const videoUrl = useSelector(state => state.nowPlaying);
-  const canPlay = useSelector(state => state.canPlay);
-  const cover = useSelector(state => state.cover);
+  const videoUrl = state.nowPlaying;
+  const canPlay = state.canPlay;
+  const cover = state.cover;
 
   const pay = () => {
     if (canPlay) video.current.play();
   };
 
-  const rightClick = e => {
+  const rightClick = (e) => {
     e.preventDefault();
   };
 

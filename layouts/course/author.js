@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewLesson from "./new-lesson";
-import { useSelector, useDispatch } from "react-redux";
+import { useSnapshot } from "valtio";
+import store, { actions } from "../../store/store";
 import API from "../../services/api";
 import Paystack from "../../components/paystack";
 import Stripe from "../paymentModal";
@@ -16,9 +17,13 @@ const Author = ({
   price,
   currency,
 }) => {
-  const isActive = useSelector((state) => state.isActive);
-  const useStripe = useSelector((state) => state.useStripe);
-  const dispatch = useDispatch();
+  const state = useSnapshot(store);
+
+  const isActive = state.isActive;
+  const useStripe = state.useStripe;
+  const dispatch = (action) => {
+    actions(action);
+  };
 
   const [canPay, setCanPay] = useState(false);
 
