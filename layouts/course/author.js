@@ -22,7 +22,6 @@ const Author = ({
   const { asPath } = useRouter();
 
   const component = state.component;
-  const useStripe = state.useStripe;
   const dispatch = (action) => {
     actions(action);
   };
@@ -39,7 +38,6 @@ const Author = ({
   const { email, firstname, lastname, reference } = config;
 
   const [isUser, setUser] = useState(false);
-  const country = "";
 
   const open = () => {
     dispatch({
@@ -85,11 +83,7 @@ const Author = ({
   };
 
   const paid = () => {
-    if (country === "Nigeria") {
-      paystackPayment();
-    } else {
-      stripePayment();
-    }
+    paystackPayment();
   };
 
   const free = async () => {
@@ -129,6 +123,11 @@ const Author = ({
   useEffect(() => {
     if (canPay) paystackNow();
   }, [canPay, config]);
+
+  useEffect(() => {
+    setUser(state.userInfo);
+    console.log(isUser);
+  }, []);
 
   return (
     <div className="author-container">
@@ -178,7 +177,6 @@ const Author = ({
         lastname={lastname}
         reference={reference}
       />
-      {useStripe && <Stripe />}
     </div>
   );
 };
