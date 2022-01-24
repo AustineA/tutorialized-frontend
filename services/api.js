@@ -6,6 +6,7 @@ const API = axios.create({
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : "https://tutorialized.amaniart.net",
+  withCredentials: false,
 });
 
 export const injectScript = (src) => {
