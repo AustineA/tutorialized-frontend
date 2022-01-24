@@ -15,9 +15,8 @@ const NewLesson = () => {
     actions(action);
   };
 
-  const lessonData = new FormData();
-
   const handleSubmit = async (e) => {
+    const lessonData = new FormData();
     e.preventDefault();
     try {
       Object.entries(f).map(([key, value]) => {

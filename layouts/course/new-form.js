@@ -11,9 +11,8 @@ const NewForm = () => {
   const featuredImage = useRef(null);
   const posterImage = useRef(null);
 
-  const courseData = new FormData();
-
   const handleSubmit = async (e) => {
+    const courseData = new FormData();
     e.preventDefault();
 
     Object.entries(f).map(([key, value]) => {
