@@ -2,7 +2,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://tutorialized.amaniart.net",
 });
 
 export const injectScript = (src) => {
