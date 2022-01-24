@@ -48,6 +48,7 @@ const actions = (action, state = snapshot(store)) => {
 
     case "CLOSE":
       store.isActive = false;
+      store.component = "";
       break;
 
     case "PAYSTACK":

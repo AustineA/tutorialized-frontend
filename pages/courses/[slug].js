@@ -71,7 +71,7 @@ const Course = ({ loggedIn, url }) => {
         github={course.github}
         download_url={course.download_url}
         author_url={course.author_url}
-        isAuthor={course.isAuthor}
+        isAuthor={course.is_author}
         purchased={course.purchased}
         price={course.price}
         currency={course.currency}
