@@ -28,6 +28,7 @@ const Nav = () => {
     setAuth(false);
     setOpen(!isOpen);
     localStorage.clear();
+    router.push("/");
   };
 
   const signin = () => {

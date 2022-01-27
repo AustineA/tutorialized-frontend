@@ -97,6 +97,9 @@ const Author = ({
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+
+      let currentUrl = window.location.pathname;
+      window.location.replace(currentUrl);
     } catch (e) {
       console.log(e.response.data);
     }
